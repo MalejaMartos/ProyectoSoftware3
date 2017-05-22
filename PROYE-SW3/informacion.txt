@@ -1,0 +1,5 @@
+La carpeta comedor montenegro contiene el codigo del proyecto, para poder observar este codigo, lo abren como proyecto en netbeans
+Una vez montado el proyecto en netbeans, si les sale error de librerias, solo es dar clik derecho sobre el proyecto, proiedades, en la pestaña libraries dan clic en el boton add JAR/Folder, van a la carpeta librerias, y seleccionan todas las librerias y le dan aceptar y ok.
+---------------------------------------------------------------------------------------------------------
+La carpeta digitalpersonal, contiene todo lo relacionado con el SDK, para poder utilizar el huellero
+deben instalar el sdk en una sistema de 64 bits, ya que adentro de la carpeta SDK, que se encuentra en el interior del directorio degitalperonsa, se encuentra el instalador.
