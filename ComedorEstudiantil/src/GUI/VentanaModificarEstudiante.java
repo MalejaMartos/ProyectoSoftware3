@@ -277,6 +277,28 @@ public class VentanaModificarEstudiante extends javax.swing.JFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
+        cn = dataConnection.conexion();
+			try {
+
+				pst = cn.prepareStatement(
+						"update estudiante set nombres=?,apellidos=?,grado=?,tipoPoblacion=?,modeloPedagogico=? where documento=?");
+				pst.setString(1, jTextFieldNombres.getText());
+				pst.setString(2, jTextFieldApellido.getText());
+				pst.setString(3, jTextFieldGrado.getText());
+				pst.setString(4, (String) jComboBoxTipoPoblacion.getSelectedItem());
+				pst.setString(5, (String) jComboBoxMetodologia.getSelectedItem());
+				pst.setInt(6, Integer.parseInt(jTextFieldDocumento.getText()));
+				int res = pst.executeUpdate();
+				if (res > 0) {
+					JOptionPane.showMessageDialog(null, "El estudiante se ha modificado");
+				} else {
+					JOptionPane.showMessageDialog(null, "No se pudo modificar estudiante, ocurrio un error");
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarEstudianteActionPerformed
