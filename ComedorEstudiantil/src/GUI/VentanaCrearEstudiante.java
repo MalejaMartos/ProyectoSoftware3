@@ -179,6 +179,11 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         jButtonGuardarHuella.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonGuardarHuella.setText("Guardar Huella");
         jButtonGuardarHuella.setEnabled(false);
+        jButtonGuardarHuella.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarHuellaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -331,6 +336,19 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonCrearEstudianteActionPerformed
+
+    private void jButtonGuardarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarHuellaActionPerformed
+        // TODO add your handling code here:
+        String documento = jTextFieldDocumento.getText();
+
+            guardarHuella(documento);
+            Reclutador.clear();
+            jLabelImagenHuella.setIcon(null);
+            stop();
+//			Iniciar();
+//			start();
+
+    }//GEN-LAST:event_jButtonGuardarHuellaActionPerformed
 
     public void limpiar() {
         jTextFieldDocumento.setText("");
@@ -634,6 +652,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
             //btnGuardar.setEnabled(false);
             //btnVerificar.grabFocus();
         } catch (SQLException ex) {
+            ex.printStackTrace();
             //Si ocurre un error lo indica en la consola
             System.err.println("Error al guardar los datos de la huella.");
         } finally {

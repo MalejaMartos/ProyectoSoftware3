@@ -162,31 +162,18 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
         jButtonHuellaDigital.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonHuellaDigital.setText("Ver Huella Digital");
 
+        jTextFieldTipoPoblacion.setEditable(false);
+
+        jTextFieldMetodologia.setEditable(false);
+
         javax.swing.GroupLayout jPanelDatosEstudianteLayout = new javax.swing.GroupLayout(jPanelDatosEstudiante);
         jPanelDatosEstudiante.setLayout(jPanelDatosEstudianteLayout);
         jPanelDatosEstudianteLayout.setHorizontalGroup(
             jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
                 .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDocumento, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
-                    .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
-                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(60, 60, 60)
-                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNombres)
-                            .addComponent(jTextFieldApellidos)
-                            .addComponent(jTextFieldGrado)
-                            .addComponent(jTextFieldSexo)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDatosEstudianteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 200, Short.MAX_VALUE)
                         .addComponent(jButtonHuellaDigital))
                     .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
                         .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,10 +181,24 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addGap(26, 26, 26))
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(5, 5, 5)
                         .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldTipoPoblacion)
-                            .addComponent(jTextFieldMetodologia))))
+                            .addComponent(jTextFieldMetodologia)))
+                    .addGroup(jPanelDatosEstudianteLayout.createSequentialGroup()
+                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanelDatosEstudianteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDocumento)
+                            .addComponent(jTextFieldApellidos)
+                            .addComponent(jTextFieldGrado)
+                            .addComponent(jTextFieldSexo)
+                            .addComponent(jTextFieldNombres, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap())
         );
         jPanelDatosEstudianteLayout.setVerticalGroup(

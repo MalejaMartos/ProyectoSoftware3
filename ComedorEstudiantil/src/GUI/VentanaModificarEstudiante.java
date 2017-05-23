@@ -5,11 +5,29 @@
  */
 package GUI;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import logica.dataConnection;
+
 /**
  *
  * @author Aleja
  */
 public class VentanaModificarEstudiante extends javax.swing.JFrame {
+
+    private final String[] genero = {"FEMENINO", "MASCULINO"};
+    private final String[] metodologias = {"TRADICIONAL", "FLEXIBLE"};
+    private final String[] tipoPoblacion = {"AFRO COLOMBIANO", "DESPLAZADOS", "INDIGENA", "OTRA", "N/A"};
+
+    // atributos para el manejo de la base de datos
+    PreparedStatement pst;
+    Connection cn;
+    ResultSet result;
 
     /**
      * Creates new form ventanaModificarEstudiante
@@ -44,9 +62,9 @@ public class VentanaModificarEstudiante extends javax.swing.JFrame {
         jTextFieldNombres = new javax.swing.JTextField();
         jTextFieldApellido = new javax.swing.JTextField();
         jTextFieldGrado = new javax.swing.JTextField();
-        jComboBoxSexo = new javax.swing.JComboBox();
-        jComboBoxMetodologia = new javax.swing.JComboBox();
-        jComboBoxTipoPoblacion = new javax.swing.JComboBox();
+        jComboBoxSexo = new javax.swing.JComboBox(genero);
+        jComboBoxMetodologia = new javax.swing.JComboBox(metodologias);
+        jComboBoxTipoPoblacion = new javax.swing.JComboBox(tipoPoblacion);
         jButtonGuardar = new javax.swing.JButton();
 
         jLabel7.setText("jLabel7");
@@ -61,6 +79,11 @@ public class VentanaModificarEstudiante extends javax.swing.JFrame {
         jLabel1.setText("Documento C.C/T.I:");
 
         jButtonBuscarEstudiante.setText("Buscar");
+        jButtonBuscarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarEstudianteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -207,40 +230,47 @@ public class VentanaModificarEstudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void jButtonBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarEstudianteActionPerformed
+        // TODO add your handling code here:
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaModificarEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaModificarEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaModificarEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaModificarEstudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+            // TODO add your handling code here:
+            int documento = Integer.parseInt(jTextFieldBuscarEstudiante.getText());
+            cn = dataConnection.conexion();
+            pst = cn.prepareStatement(
+                    "select documento,nombres,apellidos,grado,sexo,tipoPoblacion,modeloPedagogico from estudiante WHERE documento=?");
+            pst.setInt(1, documento);
+            result = pst.executeQuery();
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaModificarEstudiante().setVisible(true);
+            if (result.next()) {
+                jTextFieldDocumento.setText(String.valueOf(result.getInt("documento")));
+                jTextFieldNombres.setText(result.getString("nombres"));
+                jTextFieldApellido.setText(result.getString("apellidos"));
+                jTextFieldGrado.setText(result.getString("grado"));
+                String sexo = result.getString("sexo");
+                String tipoPoblacion = result.getString("tipoPoblacion");
+                String metodologia = result.getString("modeloPedagogico");
+                jComboBoxSexo.setSelectedIndex(sexo(sexo));
+//                jComboBoxTipoPoblacion.setSelectedIndex();
+//                jComboBoxMetodologia.setText();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El estudiante no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        });
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaBuscarEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonBuscarEstudianteActionPerformed
+    public int sexo(String s) {
+        switch (s){
+            case "M":
+                return 1;
+        
+            case "F":
+                return 0;
+               
+            
+        }
+        return -1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

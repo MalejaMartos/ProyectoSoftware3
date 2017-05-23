@@ -113,6 +113,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarEstudianteActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -260,6 +263,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox(genero)"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxMetodologia">
           <Properties>
@@ -267,6 +273,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox(metodologias)"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxTipoPoblacion">
           <Properties>
@@ -274,6 +283,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox(tipoPoblacion)"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGuardar">
           <Properties>
