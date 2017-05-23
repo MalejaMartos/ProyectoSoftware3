@@ -81,6 +81,11 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         jButtonModificarEstudiante.setFocusable(false);
         jButtonModificarEstudiante.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonModificarEstudiante.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonModificarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarEstudianteActionPerformed(evt);
+            }
+        });
         jToolBarOpcionsAdmin.add(jButtonModificarEstudiante);
         jToolBarOpcionsAdmin.add(jSeparator4);
 
@@ -173,6 +178,12 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         VentanaEliminarEstudiante ventana= new VentanaEliminarEstudiante();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButtonEliminarEstudianteActionPerformed
+
+    private void jButtonModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstudianteActionPerformed
+        // TODO add your handling code here:
+        VentanaModificarEstudiante ventana= new VentanaModificarEstudiante();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jButtonModificarEstudianteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

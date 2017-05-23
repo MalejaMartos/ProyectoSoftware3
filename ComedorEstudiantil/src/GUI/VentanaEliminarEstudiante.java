@@ -34,7 +34,9 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Elinimar Estudiante");
+        setResizable(false);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelTitulo.setText("Eliminar Estudiantes");
@@ -95,6 +97,7 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
