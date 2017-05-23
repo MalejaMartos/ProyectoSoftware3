@@ -1,0 +1,10 @@
+Tareas Juan Alape
+1. arreglar consulta de base datos para eliminar un estudiante.
+1.1. que se vea el nombre y apellido que se va a eliminar en un joptionPane o implementar un un mensaje de confirmación.
+2. Realizar los eventos de la ventanas no se puedan abrir mas de 2 veces, implementar destruccion de las ventanas.
+3. organizar la consulta de generar informe, que debe agregar el documento de identidad de cada estudiante, para que no se guarde mas de 2 visitas 
+a un estudiante con el mismo nombre.
+2.1 Realizar los eventos de los botones, es decir que sin necesidad hacer clic en ellos, con un simple enter realice la acción 
+3.1 en el informa debe mostrar la fecha que se esta reportando, para tener un control de fecha a fecha
+3.2 verificar que una persona que se ingresa como asistente, en el informe se muestre que dicha persona es un asistente.
+3.3 la fecha inicial no debe ser despues de la fecha final, debe lanzar un errores de tiempo.
