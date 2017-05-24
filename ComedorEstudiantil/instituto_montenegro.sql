@@ -1,9 +1,4 @@
-﻿# Host: localhost  (Version 5.7.17-log)
-# Date: 2017-05-18 16:31:59
-# Generator: MySQL-Front 6.0  (Build 1.194)
-
-
-#
+﻿#
 # Structure for table "administrador"
 #
 
@@ -21,7 +16,7 @@ CREATE TABLE `administrador` (
 # Data for table "administrador"
 #
 
-INSERT INTO `administrador` VALUES (1,'administrador1','admin123','Instituto','Montenegro');
+INSERT INTO `administrador` VALUES (1,'administrador','admin123','instituto','montenegro');
 
 #
 # Structure for table "estudiante"
@@ -39,6 +34,7 @@ CREATE TABLE `estudiante` (
   PRIMARY KEY (`documento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 #
 # Structure for table "huella"
 #
@@ -51,7 +47,7 @@ CREATE TABLE `huella` (
   `estudiante_documento` int(11) NOT NULL,
   PRIMARY KEY (`idhuella`,`estudiante_documento`),
   KEY `fk_huella_estudiante1_idx` (`estudiante_documento`),
-  CONSTRAINT `fk_huella_estudiante1` FOREIGN KEY (`estudiante_documento`) REFERENCES `estudiante` (`documento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_huella_estudiante1` FOREIGN KEY (`estudiante_documento`) REFERENCES `estudiante` (`documento`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 #
