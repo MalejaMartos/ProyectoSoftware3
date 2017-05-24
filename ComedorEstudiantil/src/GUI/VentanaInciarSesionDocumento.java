@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -35,6 +38,7 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Ingreso Por Documento");
+        setIconImage(getIconImage());
         setName("VentanaRegistrarIngreoDoc"); // NOI18N
         setResizable(false);
 
@@ -99,12 +103,18 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         // TODO add your handling code here:
-        VentanaLogInEstudiante ventana= new VentanaLogInEstudiante();
+        VentanaLogInEstudiante ventana = new VentanaLogInEstudiante();
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
 
+        return retValue;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JButton jButtonRegistrarIngreso;

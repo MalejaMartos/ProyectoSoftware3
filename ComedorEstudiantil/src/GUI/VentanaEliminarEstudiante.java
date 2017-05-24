@@ -5,12 +5,25 @@
  */
 package GUI;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import logica.dataConnection;
+
 /**
  *
  * @author user
  */
 public class VentanaEliminarEstudiante extends javax.swing.JFrame {
 
+      // atributos para el manejo de la base de datos
+    PreparedStatement pst;
+    Connection cn;
+    ResultSet result;
     /**
      * Creates new form VentanaEliminarEstudiante
      */
@@ -31,10 +44,11 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         jLabelTexto = new javax.swing.JLabel();
         jLabelDocumento = new javax.swing.JLabel();
         jTextFieldDocumento = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Elinimar Estudiante");
+        setIconImage(getIconImage());
         setResizable(false);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -46,11 +60,11 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         jLabelDocumento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDocumento.setText("Documento C.C/T.I:");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton1.setText("Eliminar Estudiante");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButtonEliminar.setText("Eliminar Estudiante");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonEliminarActionPerformed(evt);
             }
         });
 
@@ -76,7 +90,7 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(jButtonEliminar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,7 +105,7 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
                     .addComponent(jLabelDocumento)
                     .addComponent(jTextFieldDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonEliminar)
                 .addGap(25, 25, 25))
         );
 
@@ -99,13 +113,42 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int documento = Integer.parseInt(jTextFieldDocumento.getText());
+			cn = dataConnection.conexion();
+			try {
+				pst = cn.prepareStatement("delete from estudiante where documento=?");
+				pst.setInt(1, documento);
+				int res = pst.executeUpdate();
+				if (res > 0) {
+					JOptionPane.showMessageDialog(null, "Estudiante eliminado satisfractoriamente");
+					limpiar();
+				} else {
+					JOptionPane.showMessageDialog(null, "el estudiante nn existe");
+					limpiar();
+				}
+				cn.close();
+
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+     @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
+
+
+        return retValue;
+    }
+    public void limpiar() {
+		jTextFieldDocumento.setText(" ");
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JLabel jLabelDocumento;
     private javax.swing.JLabel jLabelTexto;
     private javax.swing.JLabel jLabelTitulo;

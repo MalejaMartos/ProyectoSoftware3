@@ -47,8 +47,8 @@ CREATE TABLE `huella` (
   `estudiante_documento` int(11) NOT NULL,
   PRIMARY KEY (`idhuella`,`estudiante_documento`),
   KEY `fk_huella_estudiante1_idx` (`estudiante_documento`),
-  CONSTRAINT `fk_huella_estudiante1` FOREIGN KEY (`estudiante_documento`) REFERENCES `estudiante` (`documento`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_huella_estudiante1` FOREIGN KEY (`estudiante_documento`) REFERENCES `estudiante` (`documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 #
 # Structure for table "instituto_montenegro"

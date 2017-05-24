@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +70,7 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Estudiante");
+        setIconImage(getIconImage());
         setName("VentanaBuscarEstudiante"); // NOI18N
         setResizable(false);
 
@@ -337,6 +340,14 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
 
     public void limpiar(){
         jTextFieldDocumentoABuscar.setText("");
+    }
+     @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
+
+
+        return retValue;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarEstudiante;
