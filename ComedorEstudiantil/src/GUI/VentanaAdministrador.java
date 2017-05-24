@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -45,6 +48,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setIconImage(getIconImage());
         setName("VentanaAdministrador"); // NOI18N
         setResizable(false);
 
@@ -133,6 +137,11 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         jButtonSalir.setFocusable(false);
         jButtonSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButtonSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
         jToolBarOpcionsAdmin.add(jButtonSalir);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,6 +194,19 @@ public class VentanaAdministrador extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_jButtonModificarEstudianteActionPerformed
 
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+     @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
+
+
+        return retValue;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarEstudiante;

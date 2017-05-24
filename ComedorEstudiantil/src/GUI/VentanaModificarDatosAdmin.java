@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -50,6 +53,7 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PAE Instituto Montenegro-Modificar Informacion Admin");
+        setIconImage(getIconImage());
         setResizable(false);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -109,7 +113,7 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
                     .addComponent(jPasswordFieldActual)))
             .addGroup(jPanelDatosAdminLayout.createSequentialGroup()
                 .addComponent(jLabelNueva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jPasswordFieldNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanelDatosAdminLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
@@ -231,7 +235,14 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
         
         jButtonGuardar.setEnabled(true);
     }//GEN-LAST:event_jButtonBuscarAdministradorActionPerformed
+ @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
 
+
+        return retValue;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarAdministrador;

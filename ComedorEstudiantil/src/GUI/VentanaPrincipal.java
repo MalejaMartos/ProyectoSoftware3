@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author user
@@ -32,16 +35,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonAdministrador = new javax.swing.JButton();
         jButtonEstudiante = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Comedor Estudiantil");
+        setIconImage(getIconImage());
         setName("ventanaPrincipal"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(0, 0));
 
-        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Bienvenidos al Comedor Estudiantil del Instituto Montenegro");
+        jLabelTitulo.setText("Bienvenidos al Comedor Estudiantil");
 
         jLabelContenido.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelContenido.setText("Para acceder elija el perfil");
@@ -70,34 +75,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Instituto Montenegro");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonSalir)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAdministrador)
+                        .addGap(48, 48, 48)
+                        .addComponent(jButtonEstudiante))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(117, 117, 117)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabelContenido))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonSalir)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonAdministrador)
-                                .addGap(48, 48, 48)
-                                .addComponent(jButtonEstudiante)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabelContenido)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(19, 19, 19)
+                .addComponent(jLabelTitulo)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelContenido)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -105,7 +114,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButtonEstudiante, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jButtonSalir)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,6 +140,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
+
+
+        return retValue;
+    }
     /**
      * @param args the command line arguments
      */
@@ -171,6 +188,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAdministrador;
     private javax.swing.JButton jButtonEstudiante;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelContenido;
     private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
