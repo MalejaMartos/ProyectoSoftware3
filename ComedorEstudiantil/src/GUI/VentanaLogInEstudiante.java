@@ -195,6 +195,7 @@ public class VentanaLogInEstudiante extends javax.swing.JFrame {
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         // TODO add your handling code here:
+        stop();
         VentanaPrincipal ventana= new VentanaPrincipal();
         ventana.setVisible(true);
         this.dispose();
