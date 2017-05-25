@@ -62,7 +62,7 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("PAE Instituto Montenegro-Modificar Informacion Admin");
+        setTitle("Modificar Informacion Admin");
         setIconImage(getIconImage());
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
