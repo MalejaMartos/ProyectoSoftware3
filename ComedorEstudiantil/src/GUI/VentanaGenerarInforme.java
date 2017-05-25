@@ -63,7 +63,7 @@ public class VentanaGenerarInforme extends javax.swing.JFrame {
         jButtonGenerarInform = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("PAE Instituto Montenegro-Generar Informe");
+        setTitle("Generar Informe");
         setIconImage(getIconImage());
         setResizable(false);
 
