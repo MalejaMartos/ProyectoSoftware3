@@ -206,9 +206,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDocumentoRegistrarEstudiante">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldDocumentoRegistrarEstudianteActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldNombreRegistrarEstudiante">
         </Component>
@@ -218,6 +215,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar Estudiante"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegistrarEstudianteActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

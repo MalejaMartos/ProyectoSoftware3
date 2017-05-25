@@ -80,13 +80,12 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
 
         jLabelApellidosRegistrarEstudiante.setText("Apellidos:");
 
-        jTextFieldDocumentoRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRegistrarEstudiante.setText("Registrar Estudiante");
+        jButtonRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDocumentoRegistrarEstudianteActionPerformed(evt);
+                jButtonRegistrarEstudianteActionPerformed(evt);
             }
         });
-
-        jButtonRegistrarEstudiante.setText("Registrar Estudiante");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,9 +183,14 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
-    private void jTextFieldDocumentoRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDocumentoRegistrarEstudianteActionPerformed
+    private void jButtonRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarEstudianteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDocumentoRegistrarEstudianteActionPerformed
+        String nombres = jTextFieldNombreRegistrarEstudiante.getText();
+        String apellidos = jTextFieldApellidosRegistrarEstudiante.getText();
+        int documento = Integer.parseInt(jTextFieldDocumentoRegistrarEstudiante.getText());
+        
+        //validar que ingrese los campos
+    }//GEN-LAST:event_jButtonRegistrarEstudianteActionPerformed
 
     @Override
     public Image getIconImage() {
