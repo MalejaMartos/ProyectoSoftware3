@@ -74,6 +74,7 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
         jLabelNombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelNombreUsuario.setText("Nombre de Usuario:");
 
+        jTextFieldNombreUsuario.setEditable(false);
         jTextFieldNombreUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabelActual.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N

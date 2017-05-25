@@ -122,6 +122,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldNickname">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="administrador"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordAdministrador">
     </Component>

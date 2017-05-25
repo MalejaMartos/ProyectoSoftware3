@@ -83,6 +83,7 @@ public class VentanaLogInEstudiante extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Ingreso del Estudiante");
+        setIconImage(getIconImage());
         setName("VentanaInicioSesionEstudiante"); // NOI18N
         setResizable(false);
 
@@ -188,6 +189,7 @@ public class VentanaLogInEstudiante extends javax.swing.JFrame {
 
     private void jButtonInicioSesionDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInicioSesionDocActionPerformed
         // TODO add your handling code here:
+        stop();
         VentanaInciarSesionDocumento ventana= new VentanaInciarSesionDocumento();
         ventana.setVisible(true);
         this.dispose();

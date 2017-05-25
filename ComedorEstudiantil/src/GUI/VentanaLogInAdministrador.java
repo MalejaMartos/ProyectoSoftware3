@@ -67,6 +67,9 @@ public class VentanaLogInAdministrador extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Contraseña:");
 
+        jTextFieldNickname.setEditable(false);
+        jTextFieldNickname.setText("administrador");
+
         jButtonIniciarSesion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jButtonIniciarSesion.setText("Iniciar Sesion");
         jButtonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
