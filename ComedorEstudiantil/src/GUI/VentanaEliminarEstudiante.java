@@ -125,7 +125,7 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
 					JOptionPane.showMessageDialog(null, "Estudiante eliminado satisfractoriamente");
 					limpiar();
 				} else {
-					JOptionPane.showMessageDialog(null, "el estudiante nn existe");
+					JOptionPane.showMessageDialog(null, "el estudiante no existe");
 					limpiar();
 				}
 				cn.close();
