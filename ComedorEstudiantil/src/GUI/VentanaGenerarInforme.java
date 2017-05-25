@@ -66,6 +66,11 @@ public class VentanaGenerarInforme extends javax.swing.JFrame {
         setTitle("Generar Informe");
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Generar Informe");
@@ -202,6 +207,11 @@ public class VentanaGenerarInforme extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fechas mal ingresadas, por favor reviselas");
         }
     }//GEN-LAST:event_jButtonGenerarInformActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaAdministrador.cambiarEstado(true);
+    }//GEN-LAST:event_formWindowClosed
 
     public Date formatFecha(Date fecha) {
         SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");

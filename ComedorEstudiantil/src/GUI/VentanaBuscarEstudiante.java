@@ -344,7 +344,6 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null, "Ventana Cerrada.");
         VentanaAdministrador.cambiarEstado(true);
     }//GEN-LAST:event_formWindowClosed
 

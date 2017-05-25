@@ -50,6 +50,11 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         setTitle("Elinimar Estudiante");
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelTitulo.setText("Eliminar Estudiantes");
@@ -140,6 +145,11 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaAdministrador.cambiarEstado(true);
+    }//GEN-LAST:event_formWindowClosed
+
      @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
@@ -149,7 +159,7 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         return retValue;
     }
     public void limpiar() {
-		jTextFieldDocumento.setText(" ");
+		jTextFieldDocumento.setText("");
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

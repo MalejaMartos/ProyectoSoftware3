@@ -104,6 +104,11 @@ public class VentanaModificarEstudiante extends javax.swing.JFrame {
         setBackground(new java.awt.Color(204, 255, 204));
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Estudiante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
 
@@ -376,6 +381,11 @@ public class VentanaModificarEstudiante extends javax.swing.JFrame {
         start();
         
     }//GEN-LAST:event_jButtonAñadirHuellaActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaAdministrador.cambiarEstado(true);
+    }//GEN-LAST:event_formWindowClosed
 
      @Override
     public Image getIconImage() {

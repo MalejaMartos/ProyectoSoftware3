@@ -55,6 +55,11 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
         setTitle("PAE Instituto Montenegro-Modificar Informacion Admin");
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabelTitulo.setText("Modificar Datos del Administrador");
@@ -236,6 +241,11 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
         
         jButtonGuardar.setEnabled(true);
     }//GEN-LAST:event_jButtonBuscarAdministradorActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaAdministrador.cambiarEstado(true);
+    }//GEN-LAST:event_formWindowClosed
  @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
