@@ -158,65 +158,67 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- static  boolean v=true;
+static boolean v = true;
     private void jButtonBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarEstudianteActionPerformed
         // TODO add your handling code here:
-        
-        
-        if(v==true){
-        VentanaBuscarEstudiante ventana= new VentanaBuscarEstudiante();
-        ventana.setVisible(true);
-        v=false;
-        }else{
+        if (v == true) {
+            VentanaBuscarEstudiante ventana = new VentanaBuscarEstudiante();
+            ventana.setVisible(true);
+            v = false;
+        } else {
             JOptionPane.showMessageDialog(null, "NO puedes abrir otra ventana");
         }
     }//GEN-LAST:event_jButtonBuscarEstudianteActionPerformed
 
     private void jButtonCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearEstudianteActionPerformed
         // TODO add your handling code here:
-        VentanaCrearEstudiante ventana= new VentanaCrearEstudiante();
+        VentanaCrearEstudiante ventana = new VentanaCrearEstudiante();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButtonCrearEstudianteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VentanaGenerarInforme ventana= new VentanaGenerarInforme();
+        VentanaGenerarInforme ventana = new VentanaGenerarInforme();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatosActionPerformed
         // TODO add your handling code here:
-        VentanaModificarDatosAdmin ventana= new VentanaModificarDatosAdmin();
+        VentanaModificarDatosAdmin ventana = new VentanaModificarDatosAdmin();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButtonModificarDatosActionPerformed
 
     private void jButtonEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarEstudianteActionPerformed
         // TODO add your handling code here:
-        VentanaEliminarEstudiante ventana= new VentanaEliminarEstudiante();
+        VentanaEliminarEstudiante ventana = new VentanaEliminarEstudiante();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButtonEliminarEstudianteActionPerformed
 
     private void jButtonModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstudianteActionPerformed
         // TODO add your handling code here:
-        VentanaModificarEstudiante ventana= new VentanaModificarEstudiante();
+        VentanaModificarEstudiante ventana = new VentanaModificarEstudiante();
         ventana.setVisible(true);
     }//GEN-LAST:event_jButtonModificarEstudianteActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
-        VentanaPrincipal ventana= new VentanaPrincipal();
+        VentanaPrincipal ventana = new VentanaPrincipal();
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-     @Override
+    @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
 
-
         return retValue;
     }
+
+    public static void cambiarEstado(boolean cambio) {
+        v = cambio;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarEstudiante;

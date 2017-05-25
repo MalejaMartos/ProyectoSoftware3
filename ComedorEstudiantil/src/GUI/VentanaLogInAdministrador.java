@@ -56,7 +56,7 @@ public class VentanaLogInAdministrador extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("LogIn Administrador");
+        jLabel1.setText("Ingreso Administrador");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Ingresar el nombre de usuario del administrador y su contraseña");

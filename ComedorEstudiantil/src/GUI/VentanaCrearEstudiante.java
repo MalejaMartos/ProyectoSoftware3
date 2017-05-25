@@ -316,7 +316,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
                             }
 
                             setCampos();
-                            eleccion = JOptionPane.showConfirmDialog(null, "Desea registrar un huella dactilar al estudiante", "TOMAR HUELLA", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            eleccion = JOptionPane.showConfirmDialog(null, "Desea registrar la huella dactilar al estudiante", "TOMAR HUELLA", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                             if (eleccion == JOptionPane.YES_OPTION) {
 
                                 start();
@@ -336,7 +336,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
                         e1.printStackTrace();
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null, "Por Favor llenar todos los campos de texto");
+                    JOptionPane.showMessageDialog(null, "Por favor llenar todos los campos de texto");
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "Por favor ingrese un documento valido");
@@ -489,6 +489,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
             public void readerConnected(final DPFPReaderStatusEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
+                        JOptionPane.showMessageDialog(null, "El lector de huellas esta activado y conectado");
                         // EnviarTexto("El Sensor de Huella Digital esta
                         // Activado o Conectado");
                     }
@@ -499,8 +500,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
             public void readerDisconnected(final DPFPReaderStatusEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        // EnviarTexto("El Sensor de Huella Digital esta
-                        // Desactivado o no Conectado");
+                        JOptionPane.showMessageDialog(null, "El lector de huellas esta desactivado o no conectado");
                     }
                 });
             }
@@ -593,7 +593,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
                         // EstadoHuellas();
                         setTemplate(null);
                         JOptionPane.showMessageDialog(VentanaCrearEstudiante.this,
-                                "La Plantilla de la Huella no pudo ser creada, Repita el Proceso",
+                                "La huella no se puede crear, Repita el Proceso",
                                 "Inscripcion de Huellas Dactilares", JOptionPane.ERROR_MESSAGE);
                         start();
                         break;

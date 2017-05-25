@@ -137,9 +137,11 @@
                       <Component id="jButtonRegistrarEstudiante" min="-2" pref="151" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabelNombresRegistrarEstudiante" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabelDocuentoRegistroEstudiante" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelApellidosRegistrarEstudiante" min="-2" pref="46" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jLabelApellidosRegistrarEstudiante" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jLabelNombresRegistrarEstudiante" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">

@@ -73,6 +73,11 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
         setIconImage(getIconImage());
         setName("VentanaBuscarEstudiante"); // NOI18N
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanelBuscarEstudiante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar Estudiante", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
@@ -336,6 +341,12 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
             Logger.getLogger(VentanaBuscarEstudiante.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonBuscarEstudianteActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Ventana Cerrada.");
+        VentanaAdministrador.cambiarEstado(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     public void limpiar(){

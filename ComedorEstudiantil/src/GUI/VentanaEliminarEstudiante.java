@@ -115,6 +115,8 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         // TODO add your handling code here:
+        int seleccion=JOptionPane.showConfirmDialog(null, "Seguro que quiere eliminar el estudinate","CONFIRMAR",JOptionPane.QUESTION_MESSAGE);
+        if(seleccion==JOptionPane.YES_OPTION){
         int documento = Integer.parseInt(jTextFieldDocumento.getText());
 			cn = dataConnection.conexion();
 			try {
@@ -133,6 +135,9 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+        }else if(seleccion==JOptionPane.NO_OPTION){
+            JOptionPane.showMessageDialog(null, "El estudiante no se elimino.");
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
      @Override
