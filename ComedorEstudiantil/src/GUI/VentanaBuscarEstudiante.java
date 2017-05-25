@@ -164,7 +164,7 @@ public class VentanaBuscarEstudiante extends javax.swing.JFrame {
         jTextFieldDocumento.setDoubleBuffered(true);
 
         jButtonHuellaDigital.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButtonHuellaDigital.setText("Ver Huella Digital");
+        jButtonHuellaDigital.setText("Verificar Huella Digital");
 
         jTextFieldTipoPoblacion.setEditable(false);
 
