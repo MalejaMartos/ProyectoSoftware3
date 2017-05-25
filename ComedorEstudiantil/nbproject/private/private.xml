@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/logica/institutoMontenegro.java</file>
-            <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaGenerarInforme.java</file>
-            <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaInciarSesionDocumento.java</file>
-            <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaCrearEstudiante.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaLogInEstudiante.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaEliminarEstudiante.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/logica/dataConnection.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaInciarSesionDocumento.java</file>
         </group>
     </open-files>
 </project-private>

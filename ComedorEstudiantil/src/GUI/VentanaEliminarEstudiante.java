@@ -135,6 +135,9 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
+                        catch (NumberFormatException e2){ 
+                            JOptionPane.showMessageDialog(null,"Documento Invalido");
+                        }
         }else if(seleccion==JOptionPane.NO_OPTION){
             JOptionPane.showMessageDialog(null, "El estudiante no se elimino.");
         }
@@ -149,7 +152,7 @@ public class VentanaEliminarEstudiante extends javax.swing.JFrame {
         return retValue;
     }
     public void limpiar() {
-		jTextFieldDocumento.setText(" ");
+		jTextFieldDocumento.setText("");
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
