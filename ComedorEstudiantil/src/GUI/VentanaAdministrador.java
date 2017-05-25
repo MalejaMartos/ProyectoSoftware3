@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -157,11 +158,18 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ static  boolean v=true;
     private void jButtonBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarEstudianteActionPerformed
         // TODO add your handling code here:
+        
+        
+        if(v==true){
         VentanaBuscarEstudiante ventana= new VentanaBuscarEstudiante();
         ventana.setVisible(true);
+        v=false;
+        }else{
+            JOptionPane.showMessageDialog(null, "NO puedes abrir otra ventana");
+        }
     }//GEN-LAST:event_jButtonBuscarEstudianteActionPerformed
 
     private void jButtonCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearEstudianteActionPerformed
@@ -196,7 +204,9 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        VentanaPrincipal ventana= new VentanaPrincipal();
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
      @Override

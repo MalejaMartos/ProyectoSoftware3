@@ -430,7 +430,7 @@ public class VentanaLogInEstudiante extends javax.swing.JFrame {
             while (rs.next()) {
                 //Lee la plantilla de la base de datos
                 byte templateBuffer[] = rs.getBytes("huella");
-                int documento = rs.getInt("estudiante_documento");
+                int documento = rs.getInt("documento");
                 doc = documento;
                 //Crea una nueva plantilla a partir de la guardada en la base de datos
                 DPFPTemplate referenceTemplate = DPFPGlobal.getTemplateFactory().createTemplate(templateBuffer);

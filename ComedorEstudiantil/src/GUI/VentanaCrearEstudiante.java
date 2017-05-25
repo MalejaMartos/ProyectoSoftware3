@@ -646,6 +646,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
      */
     public void guardarHuella(String documento) {
         int doc = Integer.parseInt(documento);
+        String nombres=jTextFieldNombres.getText();
         //Obtiene los datos del template de la huella actual
         ByteArrayInputStream datosHuella = new ByteArrayInputStream(template.serialize());
         Integer tamanoHuella = template.serialize().length;
@@ -655,15 +656,16 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         try {
             //Establece los valores para la sentencia SQL
             cn = dataConnection.conexion();
-            PreparedStatement guardarStmt = cn.prepareStatement("INSERT INTO huella(huelladocumneto, huella,estudiante_documento) values(?,?,?)");
+            PreparedStatement guardarStmt = cn.prepareStatement("INSERT INTO huella(documento,nombres, huella) values(?,?,?)");
 
             guardarStmt.setString(1, documento);
-            guardarStmt.setBinaryStream(2, datosHuella, tamanoHuella);
-            guardarStmt.setInt(3, doc);
+            guardarStmt.setString(2, nombres);
+            guardarStmt.setBinaryStream(3, datosHuella, tamanoHuella);
             //Ejecuta la sentencia
             guardarStmt.execute();
             guardarStmt.close();
             JOptionPane.showMessageDialog(null, "Huella Guardada Correctamente");
+            limpiar();
             cn.close();
             //btnGuardar.setEnabled(false);
             //btnVerificar.grabFocus();
@@ -671,57 +673,6 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
             ex.printStackTrace();
             //Si ocurre un error lo indica en la consola
             System.err.println("Error al guardar los datos de la huella.");
-        } finally {
-            try {
-                cn.close();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * Identifica a una persona registrada por medio de su huella digital
-     */
-    public void identificarHuella() throws IOException {
-        try {
-            //Establece los valores para la sentencia SQL
-            cn = dataConnection.conexion();
-
-            //Obtiene todas las huellas de la bd
-            PreparedStatement identificarStmt = cn.prepareStatement("SELECT huelladocumneto,huella FROM huella");
-            ResultSet rs = identificarStmt.executeQuery();
-
-            //Si se encuentra el nombre en la base de datos
-            while (rs.next()) {
-                //Lee la plantilla de la base de datos
-                byte templateBuffer[] = rs.getBytes("huella");
-                String documento = rs.getString("huelladocumneto");
-                //Crea una nueva plantilla a partir de la guardada en la base de datos
-                DPFPTemplate referenceTemplate = DPFPGlobal.getTemplateFactory().createTemplate(templateBuffer);
-                //Envia la plantilla creada al objeto contendor de Template del componente de huella digital
-                setTemplate(referenceTemplate);
-
-                // Compara las caracteriticas de la huella recientemente capturda con la
-                // alguna plantilla guardada en la base de datos que coincide con ese tipo
-                DPFPVerificationResult result = Verificador.verify(featuresverificacion, getTemplate());
-
-                //compara las plantilas (actual vs bd)
-                //Si encuentra correspondencia dibuja el mapa
-                //e indica el nombre de la persona que coincidio.
-                if (result.isVerified()) {
-                    //crea la imagen de los datos guardado de las huellas guardadas en la base de datos
-                    JOptionPane.showMessageDialog(null, "Las huella capturada es de " + documento, "Verificacion de Huella", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
-            }
-            //Si no encuentra alguna huella correspondiente al nombre lo indica con un mensaje
-            JOptionPane.showMessageDialog(null, "No existe ning�n registro que coincida con la huella", "Verificacion de Huella", JOptionPane.ERROR_MESSAGE);
-            setTemplate(null);
-        } catch (SQLException e) {
-            //Si ocurre un error lo indica en la consola
-            System.err.println("Error al identificar huella dactilar." + e.getMessage());
         } finally {
             try {
                 cn.close();
