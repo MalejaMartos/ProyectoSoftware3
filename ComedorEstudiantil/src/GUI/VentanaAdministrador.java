@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
  * @author user
  */
 public class VentanaAdministrador extends javax.swing.JFrame {
-
+    
+    static boolean v = true;
     /**
      * Creates new form VentanaAdministrador
      */
@@ -158,7 +159,7 @@ public class VentanaAdministrador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-static boolean v = true;
+
     private void jButtonBuscarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarEstudianteActionPerformed
         // TODO add your handling code here:
         if (v == true) {
@@ -166,38 +167,60 @@ static boolean v = true;
             ventana.setVisible(true);
             v = false;
         } else {
-            JOptionPane.showMessageDialog(null, "NO puedes abrir otra ventana");
+            JOptionPane.showMessageDialog(null, "No puedes abrir otra ventana");
         }
     }//GEN-LAST:event_jButtonBuscarEstudianteActionPerformed
 
     private void jButtonCrearEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearEstudianteActionPerformed
         // TODO add your handling code here:
+        if(v==true){
         VentanaCrearEstudiante ventana = new VentanaCrearEstudiante();
         ventana.setVisible(true);
+         } else {
+            JOptionPane.showMessageDialog(null, "No puedes abrir otra ventana");
+        }
     }//GEN-LAST:event_jButtonCrearEstudianteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(v==true){
         VentanaGenerarInforme ventana = new VentanaGenerarInforme();
         ventana.setVisible(true);
+         } else {
+            JOptionPane.showMessageDialog(null, "No puedes abrir otra ventana");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonModificarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarDatosActionPerformed
         // TODO add your handling code here:
+        if(v==true){
         VentanaModificarDatosAdmin ventana = new VentanaModificarDatosAdmin();
         ventana.setVisible(true);
+        }  else {
+            JOptionPane.showMessageDialog(null, "No puedes abrir otra ventana");
+        }
     }//GEN-LAST:event_jButtonModificarDatosActionPerformed
 
     private void jButtonEliminarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarEstudianteActionPerformed
         // TODO add your handling code here:
+        if(v==true){
         VentanaEliminarEstudiante ventana = new VentanaEliminarEstudiante();
         ventana.setVisible(true);
+        v=false;
+         } else {
+            JOptionPane.showMessageDialog(null, "No puedes abrir otra ventana");
+        }
     }//GEN-LAST:event_jButtonEliminarEstudianteActionPerformed
 
     private void jButtonModificarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarEstudianteActionPerformed
         // TODO add your handling code here:
+        if(v==true){
         VentanaModificarEstudiante ventana = new VentanaModificarEstudiante();
         ventana.setVisible(true);
+        v=false;
+         } else {
+            JOptionPane.showMessageDialog(null, "No puedes abrir otra ventana");
+        }
     }//GEN-LAST:event_jButtonModificarEstudianteActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed

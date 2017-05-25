@@ -99,6 +99,11 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         setTitle("Crear Estudiante");
         setIconImage(getIconImage());
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabelDocumento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabelDocumento.setText("Documento C.C/T.I:");
@@ -359,6 +364,11 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
 //			start();
 
     }//GEN-LAST:event_jButtonGuardarHuellaActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaAdministrador.cambiarEstado(true);
+    }//GEN-LAST:event_formWindowClosed
 
     public void limpiar() {
         jTextFieldDocumento.setText("");

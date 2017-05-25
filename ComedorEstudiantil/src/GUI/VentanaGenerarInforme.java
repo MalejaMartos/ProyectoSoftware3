@@ -137,67 +137,70 @@ public class VentanaGenerarInforme extends javax.swing.JFrame {
 
         Date fechaInicial = formatFecha(jDateChooserFechaInicial.getDate());
         Date fechaFinal = formatFecha(jDateChooserFechaFinal.getDate());
-        cn = dataConnection.conexion();
-        try {
-            pst = cn.prepareStatement(
-                    "select est.nombres,est.apellidos,est.tipoPoblacion, count(*) as asistencias_Semanales from  instituto_montenegro im JOIN estudiante est ON(im.documentoEstudiante=est.documento) WHERE fechaIngreso between ? AND ? GROUP BY est.nombres;");
-            pst.setDate(1, (java.sql.Date) fechaInicial);
-            pst.setDate(2, (java.sql.Date) fechaFinal);
-            result = pst.executeQuery();
+        if (validarFechas(fechaInicial, fechaFinal)) {
+            cn = dataConnection.conexion();
+            try {
+                pst = cn.prepareStatement(
+                        "select est.nombres,est.apellidos,est.tipoPoblacion, count(*) as asistencias_Semanales from  instituto_montenegro im JOIN estudiante est ON(im.documentoEstudiante=est.documento) WHERE fechaIngreso between ? AND ? GROUP BY est.nombres;");
+                pst.setDate(1, (java.sql.Date) fechaInicial);
+                pst.setDate(2, (java.sql.Date) fechaFinal);
+                result = pst.executeQuery();
 
-            PdfWriter.getInstance(documento, new FileOutputStream("informe.pdf"));
-            documento.open();
+                PdfWriter.getInstance(documento, new FileOutputStream("informe.pdf"));
+                documento.open();
 
-            documento.add(new Paragraph("Informe Semanal de asistencias \n"));
-            Paragraph saltoLinea = new Paragraph();
-            saltoLinea.add("\n\n");
-            documento.add(saltoLinea);
-            documento.add(saltoLinea);
-            // Anchos de las columnas
-            float anchosFilas[] = {2f, 2f, 2f, 2f};
-            PdfPTable tabla = new PdfPTable(anchosFilas);
-            String rotulosColumnas[] = {"Nombres", "Apellidos", "tipo Poblacion", "asistencias Semanales"};
-            // Porcentaje que ocupa a lo ancho de la pagina del PDF
-            tabla.setWidthPercentage(100);
-            // Alineacion horizontal centrada
-            tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
-            // agregar celda que ocupa las 4 columnas de los rotulos
-            PdfPCell cell = new PdfPCell(new Paragraph("Asistencias Semanales"));
-            cell.setColspan(4);
-            // Centrar contenido de celda
-            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            // Color de fondo de la celda
-            cell.setBackgroundColor(azulClaro);
-            tabla.addCell(cell);
-
-            for (int i = 0; i < rotulosColumnas.length; i++) {
-                cell = new PdfPCell(new Paragraph(rotulosColumnas[i]));
-                cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                documento.add(new Paragraph("Informe Semanal de asistencias \n"));
+                Paragraph saltoLinea = new Paragraph();
+                saltoLinea.add("\n\n");
+                documento.add(saltoLinea);
+                documento.add(saltoLinea);
+                // Anchos de las columnas
+                float anchosFilas[] = {2f, 2f, 2f, 2f};
+                PdfPTable tabla = new PdfPTable(anchosFilas);
+                String rotulosColumnas[] = {"Nombres", "Apellidos", "tipo Poblacion", "asistencias Semanales"};
+                // Porcentaje que ocupa a lo ancho de la pagina del PDF
+                tabla.setWidthPercentage(100);
+                // Alineacion horizontal centrada
+                tabla.setHorizontalAlignment(Element.ALIGN_CENTER);
+                // agregar celda que ocupa las 4 columnas de los rotulos
+                PdfPCell cell = new PdfPCell(new Paragraph("Asistencias Semanales"));
+                cell.setColspan(4);
+                // Centrar contenido de celda
                 cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-                cell.setBackgroundColor(grisClaro);
-                tabla.addCell(cell);
-            }
-            while (result.next()) {
-
-                cell = new PdfPCell(new Paragraph(result.getString("nombres")));
-                tabla.addCell(cell);
-                cell = new PdfPCell(new Paragraph(result.getString("apellidos")));
-                tabla.addCell(cell);
-                cell = new PdfPCell(new Paragraph(result.getString("tipoPoblacion")));
-                tabla.addCell(cell);
-                cell = new PdfPCell(new Paragraph(result.getString("asistencias_Semanales")));
+                // Color de fondo de la celda
+                cell.setBackgroundColor(azulClaro);
                 tabla.addCell(cell);
 
+                for (int i = 0; i < rotulosColumnas.length; i++) {
+                    cell = new PdfPCell(new Paragraph(rotulosColumnas[i]));
+                    cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setBackgroundColor(grisClaro);
+                    tabla.addCell(cell);
+                }
+                while (result.next()) {
+
+                    cell = new PdfPCell(new Paragraph(result.getString("nombres")));
+                    tabla.addCell(cell);
+                    cell = new PdfPCell(new Paragraph(result.getString("apellidos")));
+                    tabla.addCell(cell);
+                    cell = new PdfPCell(new Paragraph(result.getString("tipoPoblacion")));
+                    tabla.addCell(cell);
+                    cell = new PdfPCell(new Paragraph(result.getString("asistencias_Semanales")));
+                    tabla.addCell(cell);
+
+                }
+                documento.add(tabla);
+                documento.close();
+                JOptionPane.showMessageDialog(null, "Informe Generado");
+                cn.close();
+            } catch (SQLException | FileNotFoundException | DocumentException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
             }
-            documento.add(tabla);
-            documento.close();
-            JOptionPane.showMessageDialog(null, "Informe Generado");
-            cn.close();
-        } catch (SQLException | FileNotFoundException | DocumentException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        } else {
+            JOptionPane.showMessageDialog(null, "Fechas mal ingresadas, por favor reviselas");
         }
-
     }//GEN-LAST:event_jButtonGenerarInformActionPerformed
 
     public Date formatFecha(Date fecha) {
@@ -246,13 +249,20 @@ public class VentanaGenerarInforme extends javax.swing.JFrame {
         }
     }
 
-     @Override
+    @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
 
-
         return retValue;
+    }
+
+    public boolean validarFechas(Date fechaInicial, Date fechaFinal) {
+        if (fechaInicial.compareTo(fechaFinal) > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGenerarInform;
