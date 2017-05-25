@@ -80,12 +80,6 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
 
         jLabelApellidosRegistrarEstudiante.setText("Apellidos:");
 
-        jTextFieldDocumentoRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDocumentoRegistrarEstudianteActionPerformed(evt);
-            }
-        });
-
         jButtonRegistrarEstudiante.setText("Registrar Estudiante");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -183,10 +177,6 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         ventana.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
-
-    private void jTextFieldDocumentoRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDocumentoRegistrarEstudianteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDocumentoRegistrarEstudianteActionPerformed
 
     @Override
     public Image getIconImage() {

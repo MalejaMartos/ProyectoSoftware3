@@ -48,7 +48,7 @@ import logica.institutoMontenegro;
 public class VentanaCrearEstudiante extends javax.swing.JFrame {
 
     institutoMontenegro instituto = new institutoMontenegro();
-    
+
     private final String[] genero = {"FEMENINO", "MASCULINO"};
     private final String[] metodologias = {"TRADICIONAL", "FLEXIBLE"};
     private final String[] tipoPoblacion = {"AFRO COLOMBIANO", "DESPLAZADOS", "INDIGENA", "OTRA", "N/A"};
@@ -279,60 +279,68 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         if (eleccion == JOptionPane.YES_OPTION) {
             String nombres = jTextFieldNombres.getText();
             String apellidos = jTextFieldApellidos.getText();
-            int documento = Integer.parseInt(jTextFieldDocumento.getText());
+            String doc = jTextFieldDocumento.getText();
             String grado = jTextFieldGrado.getText();
             String sexo = sexoF((String) jComboBoxSexo.getSelectedItem());
             String tipoPoblacionEstudiante = (String) jComboBoxTipoPoblacion.getSelectedItem();
             String metodologia = (String) jComboBoxMetodologia.getSelectedItem();
 
-            // Validar que ingrese los campos obligatorios para registrarlo en
-            // la base de datos
-            if (nombres.length() != 0 && apellidos.length() != 0 && documento != 0 && grado.length() != 0) {
-                cn = dataConnection.conexion();
-                try {
-                    pst = cn.prepareStatement("insert into estudiante (documento,nombres,apellidos,"
-                            + "grado,sexo,tipoPoblacion,modeloPedagogico) values (?,?,?,?,?,?,?)");
+            int documento;
+            if (validarDocumento(doc)) {
+                documento = Integer.parseInt(doc);
 
-                    pst.setInt(1, documento);
-                    pst.setString(2, nombres);
-                    pst.setString(3, apellidos);
-                    pst.setString(4, grado);
-                    pst.setString(5, sexo);
-                    pst.setString(6, tipoPoblacionEstudiante);
-                    pst.setString(7, metodologia);
+                // Validar que ingrese los campos obligatorios para registrarlo en
+                // la base de datos
+                if (nombres.length() != 0 && apellidos.length() != 0 && documento != 0 && grado.length() != 0) {
+                    cn = dataConnection.conexion();
+                    try {
+                        pst = cn.prepareStatement("insert into estudiante (documento,nombres,apellidos,"
+                                + "grado,sexo,tipoPoblacion,modeloPedagogico) values (?,?,?,?,?,?,?)");
 
-                    int res = pst.executeUpdate();
-                    if (res > 0) {
-                        Date fecha = fechaIncio();
-                        try {
-                            instituto.insertarRegistro(documento, fecha, fecha);
-                        } catch (ParseException e1) {
+                        pst.setInt(1, documento);
+                        pst.setString(2, nombres);
+                        pst.setString(3, apellidos);
+                        pst.setString(4, grado);
+                        pst.setString(5, sexo);
+                        pst.setString(6, tipoPoblacionEstudiante);
+                        pst.setString(7, metodologia);
 
-                            e1.printStackTrace();
+                        int res = pst.executeUpdate();
+                        if (res > 0) {
+                            Date fecha = fechaIncio();
+                            try {
+                                instituto.insertarRegistro(documento, fecha, fecha);
+                            } catch (ParseException e1) {
+
+                                e1.printStackTrace();
+                            }
+
+                            setCampos();
+                            eleccion = JOptionPane.showConfirmDialog(null, "Desea registrar un huella dactilar al estudiante", "TOMAR HUELLA", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                            if (eleccion == JOptionPane.YES_OPTION) {
+
+                                start();
+                                Iniciar();
+                                JOptionPane.showMessageDialog(null, "Por favor colocar el dedo indice 4 veces\n en el lector de huellas");
+
+                            }
+                            if (eleccion == JOptionPane.NO_OPTION) {
+                                JOptionPane.showMessageDialog(null, "El estudiante se guardo exitosamente");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "ups...ocurrio un problema");
                         }
+                        cn.close();
+                    } catch (SQLException e1) {
 
-                        setCampos();
-                        eleccion = JOptionPane.showConfirmDialog(null, "Desea registrar un huella dactilar al estudiante", "TOMAR HUELLA", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-                        if (eleccion == JOptionPane.YES_OPTION) {
-                            
-                            start();
-                            Iniciar();
-                            JOptionPane.showMessageDialog(null, "Por favor colocar el dedo indice 4 veces\n en el lector de huellas");
-
-                        }
-                        if (eleccion == JOptionPane.NO_OPTION) {
-                            JOptionPane.showMessageDialog(null, "El estudiante se guardo exitosamente");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "ups...ocurrio un problema");
+                        e1.printStackTrace();
                     }
-                    cn.close();
-                } catch (SQLException e1) {
-
-                    e1.printStackTrace();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Por Favor llenar todos los campos de texto");
                 }
+            }else{
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un documento valido");
             }
-
         } else if (eleccion == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "El estudiante no se guardo");
         }
@@ -343,10 +351,10 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         // TODO add your handling code here:
         String documento = jTextFieldDocumento.getText();
 
-            guardarHuella(documento);
-            Reclutador.clear();
-            jLabelImagenHuella.setIcon(null);
-            stop();
+        guardarHuella(documento);
+        Reclutador.clear();
+        jLabelImagenHuella.setIcon(null);
+        stop();
 //			Iniciar();
 //			start();
 
@@ -432,15 +440,14 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
         }
     }
 
-     @Override
+    @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
 
-
         return retValue;
     }
-        // Varible que permite iniciar el dispositivo de lector de huella conectado
+    // Varible que permite iniciar el dispositivo de lector de huella conectado
     // con sus distintos metodos.
     private DPFPCapture Lector = DPFPGlobal.getCaptureFactory().createCapture();
 
@@ -724,7 +731,7 @@ public class VentanaCrearEstudiante extends javax.swing.JFrame {
             }
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCrearEstudiante;
     private javax.swing.JButton jButtonGuardarHuella;
