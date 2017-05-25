@@ -3,6 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaLogInEstudiante.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaEliminarEstudiante.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/logica/dataConnection.java</file>
+            <file>file:/C:/Users/Aleja/Documents/repositorio/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaInciarSesionDocumento.java</file>
+=======
             <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/logica/institutoMontenegro.java</file>
             <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaEliminarEstudiante.java</file>
             <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaAdministrador.java</file>
@@ -12,6 +18,7 @@
             <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaBuscarEstudiante.java</file>
             <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaModificarDatosAdmin.java</file>
             <file>file:/D:/Documentos/GitHub/ProyectoSoftware3/ComedorEstudiantil/src/GUI/VentanaModificarEstudiante.java</file>
+>>>>>>> 78dddf499c4a96827b561f1b865ec0f94592b7a9
         </group>
     </open-files>
 </project-private>
