@@ -2,7 +2,6 @@
 # Structure for table "administrador"
 #
 
-DROP TABLE IF EXISTS `administrador`;
 CREATE TABLE `administrador` (
   `codigoAdmin` int(11) NOT NULL AUTO_INCREMENT,
   `nickname` varchar(15) DEFAULT NULL,
@@ -16,13 +15,12 @@ CREATE TABLE `administrador` (
 # Data for table "administrador"
 #
 
-INSERT INTO `administrador` VALUES (1,'administrador','admin123','instituto','montenegro');
+INSERT INTO `administrador` VALUES (1,'administrador','admin123','Insituto','Montenegro');
 
 #
 # Structure for table "estudiante"
 #
 
-DROP TABLE IF EXISTS `estudiante`;
 CREATE TABLE `estudiante` (
   `documento` int(11) NOT NULL DEFAULT '0',
   `nombres` varchar(60) DEFAULT NULL,
@@ -36,25 +34,39 @@ CREATE TABLE `estudiante` (
 
 
 #
+# Structure for table "estudiante_ocasional"
+#
+
+CREATE TABLE `estudiante_ocasional` (
+  `documento` int(11) NOT NULL DEFAULT '0',
+  `nombres` varchar(65) DEFAULT NULL,
+  `apellidos` varchar(70) DEFAULT NULL,
+  PRIMARY KEY (`documento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# Data for table "estudiante_ocasional"
+#
+
+
+#
 # Structure for table "huella"
 #
 
-DROP TABLE IF EXISTS `huella`;
 CREATE TABLE `huella` (
-  `idhuella` int(11) NOT NULL AUTO_INCREMENT,
-  `huelladocumneto` varchar(100) DEFAULT NULL,
-  `huella` blob,
-  `estudiante_documento` int(11) NOT NULL,
-  PRIMARY KEY (`idhuella`,`estudiante_documento`),
-  KEY `fk_huella_estudiante1_idx` (`estudiante_documento`),
-  CONSTRAINT `fk_huella_estudiante1` FOREIGN KEY (`estudiante_documento`) REFERENCES `estudiante` (`documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `documento` int(11) NOT NULL DEFAULT '0',
+  `nombres` varchar(250) DEFAULT '',
+  `huella` blob NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `huella_ibfk_1` (`documento`),
+  CONSTRAINT `huella_ibfk_1` FOREIGN KEY (`documento`) REFERENCES `estudiante` (`documento`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 #
 # Structure for table "instituto_montenegro"
 #
 
-DROP TABLE IF EXISTS `instituto_montenegro`;
 CREATE TABLE `instituto_montenegro` (
   `Nit` int(11) NOT NULL AUTO_INCREMENT,
   `documentoEstudiante` int(11) DEFAULT NULL,
@@ -62,5 +74,6 @@ CREATE TABLE `instituto_montenegro` (
   `ultimoIngreso` date DEFAULT NULL,
   PRIMARY KEY (`Nit`),
   KEY `documento_Estudiante` (`documentoEstudiante`),
-  CONSTRAINT `documento_Estudiante` FOREIGN KEY (`documentoEstudiante`) REFERENCES `estudiante` (`documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+  CONSTRAINT `documento_Estudiante` FOREIGN KEY (`documentoEstudiante`) REFERENCES `estudiante` (`documento`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
