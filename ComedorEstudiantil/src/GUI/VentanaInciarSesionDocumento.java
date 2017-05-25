@@ -81,11 +81,14 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         jLabelApellidosRegistrarEstudiante.setText("Apellidos:");
 
         jButtonRegistrarEstudiante.setText("Registrar Estudiante");
+<<<<<<< HEAD
         jButtonRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarEstudianteActionPerformed(evt);
             }
         });
+=======
+>>>>>>> ce148f1265d596f72638951ccccfe04278440dea
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -183,6 +186,7 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
+<<<<<<< HEAD
     private void jButtonRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarEstudianteActionPerformed
         // TODO add your handling code here:
         String nombres = jTextFieldNombreRegistrarEstudiante.getText();
@@ -192,6 +196,8 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         //validar que ingrese los campos
     }//GEN-LAST:event_jButtonRegistrarEstudianteActionPerformed
 
+=======
+>>>>>>> ce148f1265d596f72638951ccccfe04278440dea
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
