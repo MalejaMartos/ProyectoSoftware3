@@ -7,6 +7,17 @@ package GUI;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import logica.dataConnection;
+import logica.institutoMontenegro;
 
 /**
  *
@@ -14,6 +25,12 @@ import java.awt.Toolkit;
  */
 public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
 
+    int doc;
+    institutoMontenegro instituto = new institutoMontenegro();
+    // atributos para el manejo de la base de datos
+    PreparedStatement pst;
+    Connection cn;
+    ResultSet result;
     /**
      * Creates new form InciarSesionDocumenot
      */
@@ -81,7 +98,11 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         jLabelApellidosRegistrarEstudiante.setText("Apellidos:");
 
         jButtonRegistrarEstudiante.setText("Registrar Estudiante");
-
+        jButtonRegistrarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarEstudianteActionPerformed(evt);
+            }
+        });
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -178,6 +199,53 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonAtrasActionPerformed
 
+    private void jButtonRegistrarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarEstudianteActionPerformed
+        // TODO add your handling code here:
+        String nombres = jTextFieldNombreRegistrarEstudiante.getText();
+        String apellidos = jTextFieldApellidosRegistrarEstudiante.getText();
+        String doc = jTextFieldDocumentoRegistrarEstudiante.getText();
+        int documento;
+        if(validarDocumento(doc)){
+            documento = Integer.parseInt(doc);
+            this.doc=documento;
+            //validar que ingrese los campos obligatorios para registrar en
+            //la base de datos
+            if (nombres.length() != 0 && apellidos.length() != 0 && documento !=0) {
+                cn = dataConnection.conexion();
+               
+                try {
+                    pst = cn.prepareStatement("insert into estudiante_ocasional(documento,nombres,apellidos)values (?,?,?)");
+                    
+                    pst.setInt(1, documento);
+                    pst.setString(2, nombres);
+                    pst.setString(3, apellidos);
+                    
+                    int res = pst.executeUpdate();
+                    if(res > 0) {
+                        Date fecha = fechaInicio();
+                        
+                        try {
+                            instituto.insertarRegistro(documento,fecha,fecha);
+                        } catch (ParseException e1) {
+                                        
+                              e1.printStackTrace();     
+                        }
+                        JOptionPane.showMessageDialog(null,"Se ha guardado el estudiante ocasional");
+                        registrarIngreso();
+                        JOptionPane.showMessageDialog(null,"Se ha registrado el ingreso del etudiante");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(VentanaInciarSesionDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(VentanaInciarSesionDocumento.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                    
+                
+            }
+        }
+        //validar que ingrese los campos
+    }//GEN-LAST:event_jButtonRegistrarEstudianteActionPerformed
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
@@ -201,4 +269,79 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldDocumentoRegistrarEstudiante;
     private javax.swing.JTextField jTextFieldNombreRegistrarEstudiante;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Metodo que permite validar que el documento sea de 10 caracteres
+     *
+     * @param documento
+     * @return
+     */
+    public boolean validarDocumento(String documento) {
+        boolean resultado = false;
+
+        if (documento.length() <= 11) {
+            for (int i = 0; i < documento.length(); i++) {
+                if (esNumero(documento.charAt(i))) {
+                    resultado = true;
+                } else {
+                    return false;
+                }
+            }
+
+        }
+        return resultado;
+    }
+
+     public Date fechaInicio() {
+        String date1 = "1999-05-24";
+        Date fecha = java.sql.Date.valueOf(date1);
+        return fecha;
+    }
+      /**
+     * Metodo que permite validar si el char ingresado es numero
+     *
+     * @param c
+     * @return flag
+     */
+    private boolean esNumero(char c) {
+        if (c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9'
+                || c == '0') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * Metodo que permite registrar el ingreso de los estudiantes que poseen una huella
+     */
+    public void registrarIngreso() throws ParseException {
+        Date fecha; // TODO Auto-generated catch block
+        Date ultimoIngresoFecha;
+        fecha = (Date) instituto.fechaHoy();
+        ultimoIngresoFecha = (Date) instituto.ultimaFechaIngreso(doc);
+        instituto.actualizarUltimoIngreso(fecha, doc);
+        cn = dataConnection.conexion();
+        try {
+            pst = cn.prepareStatement("select * from estudiante_ocasional where documento=?");
+            pst.setInt(1, doc);
+            
+             result = pst.executeQuery();
+            if (result.next()) {
+                if (instituto.validarFechas(fecha, ultimoIngresoFecha) == false) {
+                    instituto.insertarRegistro(doc, fecha, ultimoIngresoFecha);
+                    JOptionPane.showMessageDialog(null, "Bienvenido estudiante");
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "El estudiante ya Ingreso!!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El estudiante no se encuentra en la base de datos");
+            }
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(VentanaLogInEstudiante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
