@@ -233,14 +233,12 @@ public class VentanaInciarSesionDocumento extends javax.swing.JFrame {
                               e1.printStackTrace();     
                         }
                         JOptionPane.showMessageDialog(null,"Se ha guardado el estudiante ocasional");
-                        registrarIngreso();
+//                        registrarIngreso();
                         JOptionPane.showMessageDialog(null,"Se ha registrado el ingreso del etudiante");
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(VentanaInciarSesionDocumento.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(VentanaInciarSesionDocumento.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } 
                     
                 
             }
