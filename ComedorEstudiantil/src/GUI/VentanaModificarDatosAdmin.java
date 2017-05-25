@@ -7,6 +7,12 @@ package GUI;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import logica.dataConnection;
 
 /**
  *
@@ -14,13 +20,17 @@ import java.awt.Toolkit;
  */
 public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
 
+    PreparedStatement pst;
+    Connection cn;
+    ResultSet res;
+
     /**
      * Creates new form VentanaModificarDatosAdmin
      */
     public VentanaModificarDatosAdmin() {
         initComponents();
         jButtonGuardar.setEnabled(false);
-        
+
     }
 
     /**
@@ -234,11 +244,35 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonBuscarAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarAdministradorActionPerformed
         // TODO add your handling code here:
-        
+
+        String nickName = jTextFieldNombreABuscar.getText();
+        cn = dataConnection.conexion();
+        try {
+            pst = cn.prepareStatement(
+                    "select nickname,password,nombres,apellidos from administrador WHERE nickname=?");
+            pst.setString(1, nickName);
+            res = pst.executeQuery();
+            if (res.next()) {
+                jTextFieldNombres.setText(res.getString("nombres"));
+                jTextFieldApellidos.setText(res.getString("apellidos"));
+
+                jTextFieldNombreUsuario.setText(res.getString("nickname"));
+                
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El administrador buscado no se encuentra en la base de datos");
+                jTextFieldNombreABuscar.setText("");
+            }
+
+        } catch (SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
         jButtonGuardar.setEnabled(true);
     }//GEN-LAST:event_jButtonBuscarAdministradorActionPerformed
 
@@ -246,11 +280,10 @@ public class VentanaModificarDatosAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         VentanaAdministrador.cambiarEstado(true);
     }//GEN-LAST:event_formWindowClosed
- @Override
+    @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("imagenes/Escudo.png"));
-
 
         return retValue;
     }
